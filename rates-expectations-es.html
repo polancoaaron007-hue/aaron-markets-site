@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Por Qué las Expectativas de Tasas de Interés Mueven los Mercados Más que las Decisiones Reales</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Un artículo que explica por qué las expectativas de tasas de interés mueven los mercados financieros más que las decisiones reales de política monetaria." />
+  
+  <!-- Styles remain unchanged -->
+  <style>
+    :root {
+      --bg: #05060a;
+      --card-bg: #0c0f16;
+      --accent: #35c98b;
+      --accent-soft: rgba(53, 201, 139, 0.12);
+      --text-main: #f5f7fb;
+      --text-soft: #a6adbf;
+      --border-subtle: #1a1f2b;
+      --code-bg: #050712;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0f1729 0, #05060a 55%);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 1.5rem;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .pill span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      color: var(--text-soft);
+      font-size: 0.98rem;
+      max-width: 640px;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 2rem;
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .meta span::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border-subtle);
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #151826 0, #05060a 55%);
+      border-radius: 1.25rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.03);
+      padding: 1.8rem 1.5rem;
+    }
+
+    .section-title {
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1.4rem 0 0.4rem;
+      font-size: 1.02rem;
+    }
+
+    .quote-block {
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      margin: 1.3rem 0;
+      font-style: italic;
+      color: var(--text-main);
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.2rem 0 1.4rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-subtle);
+      background: rgba(5, 6, 10, 0.85);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 600px;
+    }
+
+    thead {
+      background: rgba(10, 14, 26, 0.95);
+    }
+
+    th, td {
+      padding: 0.75rem 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(9, 12, 22, 0.7);
+    }
+
+    .tagline {
+      margin-top: 1.8rem;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 1.2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="pill">
+      <span class="dot"></span>
+      <span>Macro & Tasas de Interés</span>
+    </div>
+
+    <h1>Por Qué las Expectativas de Tasas de Interés Mueven los Mercados Más que las Decisiones Reales</h1>
+
+    <p class="subtitle">
+      Los mercados financieros no reaccionan a lo que acaba de ocurrir — reaccionan a lo que creen que sucederá después.
+    </p>
+
+    <div class="meta">
+      <span>Análisis macro</span>
+      <span>Público: traders, fondos, research desks</span>
+      <span>Aplicación: futuros, FX, tasas, oro</span>
+    </div>
+
+    <article class="card">
+      <p>
+        La mayoría de los traders espera el anuncio de tasas. Las instituciones no. Ellas negocian las expectativas semanas o incluso meses antes del anuncio. Para cuando el banco central habla, el posicionamiento ya cambió, la liquidez ya se desplazó y gran parte del movimiento ya está descontado.
+      </p>
+
+      <p class="section-title"><strong>Los Mercados se Mueven por Expectativas — No por Eventos</strong></p>
+      <p>
+        Para cuando la Reserva Federal comunica una decisión de tasas, el resultado ya suele estar incorporado en los precios. Los mercados funcionan con precios prospectivos: los activos ajustan hoy en función de dónde se espera que esté la política monetaria mañana.
+      </p>
+      <p>
+        El punto clave es simple: la sorpresa importa más que el número. Una subida de 25 puntos base que todos esperaban es casi irrelevante. Una pausa inesperada, o menos recortes de los anticipados, puede mover miles de millones en segundos.
+      </p>
+
+      <div style="text-align:center; margin:2rem 0;">
+        <img 
+          src="assets/images/43a8ccac-403d-43e7-ba06-8fec2d299392.png"
+          alt="Edificio de la Reserva Federal"
+          style="max-width:100%; height:auto; border-radius:12px; border:1px solid rgba(255,255,255,0.08); box-shadow:0px 6px 20px rgba(0,0,0,0.45);"
+        />
+        <p style="color:#a6adbf; font-size:0.8rem; margin-top:0.4rem;">
+          Sede de la Reserva Federal, Washington D.C.
+        </p>
+      </div>
+
+      <p class="section-title"><strong>La Curva Forward: Donde Está la Información Real</strong></p>
+      <p>
+        Las expectativas de tasas se reflejan en los mercados de futuros, especialmente Fed Funds (ZQ) y SOFR. Estas curvas muestran:
+      </p>
+
+      <p>
+        &bull; El ritmo esperado de subidas o recortes<br>
+        &bull; Dónde se espera que estén las tasas en los próximos 6–24 meses<br>
+        &bull; Si la postura es restrictiva, neutral o expansiva
+      </p>
+
+      <p>
+        Cuando las expectativas cambian, los flujos de capital se reacomodan inmediatamente. Si el mercado descuenta recortes agresivos y el banco central reduce ese ritmo, los rendimientos pueden subir, el dólar fortalecerse y las acciones retroceder — incluso si la tasa actual no cambió.
+      </p>
+
+      <p class="section-title"><strong>Forward Guidance: La Herramienta Silenciosa del Banco Central</strong></p>
+      <p>
+        La comunicación del banco central suele mover más al mercado que la decisión de tasas en sí. Un pequeño ajuste en el lenguaje puede modificar por completo las expectativas del mercado.
+      </p>
+
+      <p>
+        Esa orientación afecta volatilidad, posicionamiento y apetito por riesgo. Sin mover las tasas, un banco central puede:
+      </p>
+
+      <p>
+        &bull; Impulsar o presionar futuros de índices bursátiles<br>
+        &bull; Mover los rendimientos en toda la curva<br>
+        &bull; Influir en el dólar frente a otras divisas<br>
+        &bull; Desencadenar flujos hacia oro, commodities e incluso cripto
+      </p>
+
+      <p class="section-title"><strong>Cómo Reaccionan Distintos Activos</strong></p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Activo</th>
+              <th>Impacto si suben expectativas de tasas</th>
+              <th>Impacto si bajan expectativas de tasas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Acciones</td>
+              <td>Se contraen múltiplos de valoración; tech y growth sufren.</td>
+              <td>Mejora apetito por riesgo; aumentan valuation multiples.</td>
+            </tr>
+            <tr>
+              <td>Bonos</td>
+              <td>Suben rendimientos, bajan precios; duration sufre.</td>
+              <td>Bajan rendimientos, suben precios; duration gana atractivo.</td>
+            </tr>
+            <tr>
+              <td>Dólar USD</td>
+              <td>Se fortalece por ventaja en tasas frente a otras monedas.</td>
+              <td>Se debilita al reducirse esa ventaja relativa.</td>
+            </tr>
+            <tr>
+              <td>Oro</td>
+              <td>Pierde atractivo frente a yields reales positivos.</td>
+              <td>Gana atractivo con yields bajos, dólar débil y liquidez.</td>
+            </tr>
+            <tr>
+              <td>Commodities</td>
+              <td>Pueden debilitarse si mayores tasas afectan crecimiento.</td>
+              <td>Pueden subir si política monetaria impulsa demanda.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="section-title"><strong>Datos que Cambian Expectativas de Política Monetaria</strong></p>
+      <p>
+        Las expectativas no cambian al azar: responden a datos macroeconómicos sensibles que alteran la perspectiva de inflación, empleo y crecimiento.
+      </p>
+
+      <p>
+        Indicadores clave:
+      </p>
+
+      <p>
+        &bull; Inflación: CPI, Core CPI, PPI, Core PCE<br>
+        &bull; Empleo: Nonfarm Payrolls, tasa de desempleo, JOLTS<br>
+        &bull; Crecimiento: PIB, PMI, ventas minoristas, producción industrial<br>
+        &bull; Estabilidad financiera: spreads, estrés bancario, liquidez
+      </p>
+
+      <div style="text-align:center; margin:30px 0;">
+        <img src="assets/images/6ca78711-7c22-4b1f-ad32-0b3b9bdc315a.png"
+             alt="Gráfico FedWatch"
+             style="width:600px; border-radius:10px; box-shadow:0 0 18px rgba(0,0,0,0.25);">
+        <p style="font-size:0.82rem; opacity:0.7; margin-top:8px;">
+          La reacción del mercado depende del ajuste en expectativas — no del último movimiento de tasas.
+        </p>
+      </div>
+
+      <p class="section-title"><strong>Cómo Reaccionan los Mercados en Anuncios de Política Monetaria</strong></p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Escenario</th>
+              <th>Reacción típica</th>
+              <th>Comportamiento del mercado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Decisión coincide con expectativas</td>
+              <td>Repricing controlado</td>
+              <td>Baja volatilidad; continúan tendencias previas.</td>
+            </tr>
+            <tr>
+              <td>Decisión ligeramente diferente</td>
+              <td>Ajuste brusco pero ordenado</td>
+              <td>Movimientos direccionales en yields, FX y futuros.</td>
+            </tr>
+            <tr>
+              <td>Decisión rompe expectativas</td>
+              <td>Repricing agresivo</td>
+              <td>Picos de volatilidad, liquidez se reduce, overshoot común.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="quote-block">
+        <p><strong>Principio clave:</strong> los mercados no negocian la última decisión — negocian la trayectoria futura de política monetaria.</p>
+      </div>
+
+      <p class="section-title"><strong>Conclusión: Dónde Está la Ventaja Real</strong></p>
+      <p>
+        Las decisiones de tasas son titulares. Las expectativas detrás de ellas son el motor del mercado. Para entender movimientos macro, debes seguir cómo se está repricing el mercado para los próximos 6–12 meses — no solo el próximo anuncio.
+      </p>
+
+      <p>
+        La ventaja está en anticipar el cambio en expectativas antes, no en reaccionar después.
+      </p>
+
+      <p class="tagline">
+        Este artículo es únicamente para fines educativos e informativos. No constituye asesoría de inversión ni recomendación operativa.
+      </p>
+    </article>
+  </main>
+</body>
+</html>
