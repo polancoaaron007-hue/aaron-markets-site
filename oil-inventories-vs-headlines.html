@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>How Oil Really Trades: Inventories vs Geopolitical Headlines</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A case study on how crude oil reacts to weekly inventory data and unscheduled geopolitical headlines, using real charts and order flow structure." />
+
+  <style>
+    :root {
+      --bg: #05060a;
+      --card-bg: #0c0f16;
+      --accent: #35c98b;
+      --accent-soft: rgba(53, 201, 139, 0.12);
+      --text-main: #f5f7fb;
+      --text-soft: #a6adbf;
+      --border-subtle: #1a1f2b;
+      --code-bg: #050712;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0f1729 0, #05060a 55%);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 1.5rem;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .pill span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      color: var(--text-soft);
+      font-size: 0.98rem;
+      max-width: 640px;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 2rem;
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .meta span::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border-subtle);
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #151826 0, #05060a 55%);
+      border-radius: 1.25rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.03);
+      padding: 1.8rem 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 2.3rem 2.2rem;
+      }
+    }
+
+    .card p {
+      margin-bottom: 1.1rem;
+      color: var(--text-soft);
+      font-size: 0.98rem;
+    }
+
+    .section-title {
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1.4rem 0 0.4rem;
+      font-size: 1.02rem;
+    }
+
+    .quote-block {
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      margin: 1.3rem 0;
+      font-style: italic;
+      color: var(--text-main);
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.2rem 0 1.4rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-subtle);
+      background: rgba(5, 6, 10, 0.85);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 600px;
+    }
+
+    thead {
+      background: rgba(10, 14, 26, 0.95);
+    }
+
+    th, td {
+      padding: 0.75rem 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(9, 12, 22, 0.7);
+    }
+
+    .tagline {
+      margin-top: 1.8rem;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="pill">
+      <span class="dot"></span>
+      <span>Macro &amp; Energy Markets</span>
+    </div>
+
+    <h1>How Oil Really Trades: Inventories vs Geopolitical Headlines</h1>
+
+    <p class="subtitle">
+      Crude doesn’t move because a single number prints red or green. It moves when supply, demand, and macro narrative collide. This case study walks through how weekly inventories and a sanctions headline created a two-stage move in oil.
+    </p>
+
+    <div class="meta">
+      <span>Macro &amp; order-flow commentary</span>
+      <span>Audience: futures &amp; energy traders</span>
+      <span>Use case: CL, MCL, energy equities, options</span>
+    </div>
+
+    <article class="card">
+      <p>
+        Most traders stare at the inventory number and guess long or short. Desks don’t do that. They care about where supply and demand are mispriced, how inventories interact with the broader macro story, and which narrative actually controls the tape in real time.
+      </p>
+
+      <p class="section-title"><strong>Step 1: The Scheduled Catalyst &mdash; U.S. Inventory Data</strong></p>
+      <p>
+        Every week, crude oil, distillate, and gasoline inventories drop at a known time. The calendar gives you the print, the forecast, and the prior reading. On this session, the numbers came in clearly bearish: a larger-than-expected build in crude and products.
+      </p>
+
+      <!-- Inventories Screenshot -->
+      <div style="text-align:center; margin:30px 0;">
+        <img
+          src="assets/images/oil-inventories-nov13.png"
+          alt="US crude, distillate, and gasoline inventory data"
+          style="max-width:100%; width:700px; border-radius:10px; box-shadow:0 0 18px rgba(0,0,0,0.25);"
+        >
+        <p style="font-size:0.82rem; opacity:0.7; margin-top:8px;">
+          Weekly U.S. crude, distillate, and gasoline inventories &mdash; a larger-than-expected build signals oversupply pressure.
+        </p>
+      </div>
+
+      <p>
+        Structurally, that’s simple: more barrels than expected mean softer balance, especially if demand isn’t accelerating. On paper, that tilts the short side: weaker front-month pricing, potential contango pressure, and less urgency for refiners and hedgers to chase barrels higher.
+      </p>
+
+      <p class="section-title"><strong>Step 2: How Price Reacted to the Data</strong></p>
+      <p>
+        The first reaction in CL futures respected the data. As the numbers hit, offers lifted, bids backed away, and price traded lower in a clean, directional move. This is the classic “inventory shock repricing” you’d expect when supply surprises to the upside.
+      </p>
+
+      <!-- Bearish Reaction Chart -->
+      <div style="text-align:center; margin:30px 0;">
+        <img
+          src="assets/images/oil-bearish-reaction-chart.png"
+          alt="Crude oil futures selloff after inventories release"
+          style="max-width:100%; width:900px; border-radius:10px; box-shadow:0 0 18px rgba(0,0,0,0.25);"
+        >
+        <p style="font-size:0.82rem; opacity:0.7; margin-top:8px;">
+          Initial reaction: CL sells off after the bearish inventory surprise as the market reprices oversupply.
+        </p>
+      </div>
+
+      <p>
+        If you stop the tape here, the story is clean: bearish data, bearish move. But that’s not how real markets work for long. The tape doesn’t care about your one-variable narrative.
+      </p>
+
+      <div class="quote-block">
+        <p><strong>Core idea:</strong> inventories shape the balance &mdash; but they don’t own the narrative if a bigger macro catalyst steps in.</p>
+      </div>
+
+      <p class="section-title"><strong>Step 3: The Unscheduled Catalyst &mdash; Sanctions Risk</strong></p>
+      <p>
+        A few minutes later, a headline hit the tape: talk of additional Russian oil sanctions. That’s not a scheduled event. There’s no forecast column for it. But in terms of supply risk, it can easily outweigh a single weekly inventory print.
+      </p>
+
+      <!-- Headline Catalyst Screenshot -->
+      <div style="text-align:center; margin:30px 0;">
+        <img 
+          src="assets/images/oil-russia-sanctions-headline.png"
+          alt="Headline about additional Russian oil sanctions"
+          style="max-width:100%; width:500px; border-radius:10px; box-shadow:0 0 18px rgba(0,0,0,0.25);"
+        >
+        <p style="font-size:0.82rem; opacity:0.7; margin-top:8px;">
+          Real-time headline: talk of 2nd and 3rd phases of Russian oil sanctions &mdash; a potential structural supply shock.
+        </p>
+      </div>
+
+      <p>
+        That headline instantly changes the hierarchy of risks. Weekly storage data is tactical. Sanctions on a major exporter are structural. The market now has two narratives in conflict:
+      </p>
+
+      <p>
+        &bull; <strong>Bearish:</strong> inventories built more than expected &rarr; short-term oversupply.<br>
+        &bull; <strong>Bullish:</strong> new sanctions risk &rarr; potential medium-term export disruption.
+      </p>
+
+      <p class="section-title"><strong>Step 4: The Second Move &mdash; Volatility From Narrative Conflict</strong></p>
+      <p>
+        As the sanctions headline hit, CL printed a sharp squeeze higher. Shorts who leaned purely on inventories got run over as the market briefly repriced the new supply-risk narrative.
+      </p>
+
+      <!-- Bullish Shock Reaction Chart -->
+      <div style="text-align:center; margin:30px 0;">
+        <img
+          src="assets/images/oil-bullish-shock-chart.png"
+          alt="Crude oil futures spike after sanctions headline"
+          style="max-width:100%; width:900px; border-radius:10px; box-shadow:0 0 18px rgba(0,0,0,0.25);"
+        >
+        <p style="font-size:0.82rem; opacity:0.7; margin-top:8px;">
+          Second leg: an unscheduled geopolitical headline triggers a fast upside spike as the market briefly reprices sanctions risk.
+        </p>
+      </div>
+
+      <p>
+        This is where most intraday traders lose money: the data said “down,” the tape suddenly rips “up,” and they treat that as random noise. It isn’t. It’s the market reweighting which driver matters more for forward pricing.
+      </p>
+
+      <p class="section-title"><strong>Putting It Together: A Simple Framework for Oil Traders</strong></p>
+      <p>
+        Instead of treating each event in isolation, you can rank catalysts by how much they can realistically change the forward balance:
+      </p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Catalyst Type</th>
+              <th>Example</th>
+              <th>Impact on CL Pricing</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Scheduled, tactical</td>
+              <td>Weekly crude, distillate, gasoline inventories</td>
+              <td>Short-term repricing of supply/demand, influences near curves and intraday direction.</td>
+            </tr>
+            <tr>
+              <td>Scheduled, macro</td>
+              <td>OPEC+ decisions, quarterly IEA/EIA outlooks</td>
+              <td>Reshapes expectations for production policy and trend, affects medium-term structure.</td>
+            </tr>
+            <tr>
+              <td>Unscheduled, structural</td>
+              <td>Sanctions, war risk, export bans, pipeline disruption</td>
+              <td>Can override tactical data completely; market reprices the entire path of future flows.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        The goal isn’t to predict every headline. It’s to know how to behave once the headline hits:
+      </p>
+      <p>
+        &bull; Respect the first move off inventories, but don’t marry it.<br>
+        &bull; When a structural headline lands, assume the order-flow regime just changed.<br>
+        &bull; Watch how price behaves after the spike: does it absorb and fade, or build a new trend?
+      </p>
+
+      <div class="quote-block">
+        <p><strong>Edge:</strong> You’re not just trading numbers &mdash; you’re trading the hierarchy of narratives that set forward expectations.</p>
+      </div>
+
+      <p class="section-title"><strong>Conclusion: Why This Matters Beyond One Session</strong></p>
+      <p>
+        This single sequence &mdash; bearish inventories, then a sanctions headline, then a volatile two-stage move &mdash; is a template. The same logic applies to natural gas, agricultural commodities, and even index futures around growth and inflation data.
+      </p>
+      <p>
+        If you want to trade macro-driven markets with intent, you can’t stop at “red number = short.” You need to understand what the market was already pricing, how new information changes that path, and which narrative actually owns the tape when catalysts collide.
+      </p>
+
+      <p class="tagline">
+        This article is for educational and research purposes only and does not constitute trading or investment advice.
+      </p>
+
+      <hr style="border:0; border-top:1px solid rgba(255,255,255,0.12); margin:30px 0;">
+
+      <p style="text-align:center; font-size:0.9rem; opacity:0.8;">
+        Prefer to read this in Spanish?<br>
+        <a href="oil-inventories-vs-headlines-es.html" style="color:#35c98b; text-decoration:none;">
+          👉 Ver versión en español 🇪🇸
+        </a>
+      </p>
+
+    </article>
+  </main>
+</body>
+</html>
