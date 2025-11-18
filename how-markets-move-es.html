@@ -1,1 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cómo se Mueven los Mercados: De los Catalizadores Macro a la Liquidez Institucional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Una explicación de lo que realmente impulsa el movimiento del precio en los mercados financieros modernos: flujo de órdenes institucional, posicionamiento en derivados y fuerzas macroeconómicas.">
+  <style>
+    :root {
+      --bg: #05060a;
+      --card-bg: #0c0f16;
+      --accent: #35c98b;
+      --accent-soft: rgba(53, 201, 139, 0.12);
+      --text-main: #f5f7fb;
+      --text-soft: #a5adc4;
+      --border-soft: #1a2030;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, sans-serif;
+      background: radial-gradient(circle at top, #141827 0, #05060a 60%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-soft);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 6, 10, 0.9),
+        rgba(5, 6, 10, 0.5),
+        transparent
+      );
+    }
+
+    .nav {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #5be4ff, #35c98b);
+      box-shadow: 0 0 24px rgba(53, 201, 139, 0.55);
+    }
+
+    .brand-text {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+    }
+
+    .nav-cta {
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      border-radius: 999px;
+      border: 1px solid rgba(53, 201, 139, 0.4);
+      padding: 6px 14px;
+      background: rgba(53, 201, 139, 0.05);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .hero {
+      max-width: 900px;
+      margin: 32px auto 0;
+      padding: 0 20px 10px;
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      background: rgba(53, 201, 139, 0.08);
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid rgba(53, 201, 139, 0.35);
+    }
+
+    .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(53, 201, 139, 0.7);
+    }
+
+    .title {
+      margin-top: 18px;
+      font-size: clamp(26px, 3vw, 32px);
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--text-soft);
+      max-width: 620px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .meta-pill {
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      padding: 4px 10px;
+      background: rgba(12, 15, 22, 0.85);
+    }
+
+    .layout {
+      max-width: 900px;
+      margin: 20px auto 40px;
+      padding: 0 20px 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 1.3fr);
+      gap: 26px;
+    }
+
+    @media (max-width: 780px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .article {
+      background: linear-gradient(145deg, var(--card-bg), #070814);
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      padding: 22px 22px 24px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .article h2 {
+      font-size: 15px;
+      margin-top: 10px;
+      margin-bottom: 8px;
+    }
+
+    .article p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .article p:last-child {
+      margin-bottom: 0;
+    }
+
+    .article strong {
+      color: var(--text-main);
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(160deg, var(--card-bg), #090b14);
+      border-radius: 16px;
+      border: 1px solid var(--border-soft);
+      padding: 14px 16px 16px;
+      font-size: 13px;
+      color: var(--text-soft);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(5, 6, 10, 0.9);
+    }
+
+    .heatmap {
+      margin-top: 8px;
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      background: radial-gradient(circle at 20% 10%, #46f0ff26, transparent 55%),
+        radial-gradient(circle at 70% 80%, #35c98b26, transparent 55%),
+        radial-gradient(circle at 30% 70%, #ffdd5726, transparent 55%),
+        #05060a;
+      height: 120px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .heatmap-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0.09) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.08) 1px,
+          transparent 1px
+        );
+      background-size: 26px 18px;
+      opacity: 0.5;
+    }
+
+    .heatmap-label {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      font-size: 11px;
+      color: var(--text-soft);
+      background: rgba(5, 6, 10, 0.85);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .article-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .article-image {
+      margin: 16px 0 20px;
+      padding: 10px;
+      border-radius: 16px;
+      border: 1px solid var(--border-soft);
+      background: radial-gradient(circle at top, rgba(53, 201, 139, 0.12), #05060a);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 16px 20px 20px;
+      font-size: 11px;
+      color: var(--text-soft);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-logo"></div>
+          <div class="brand-text">Aaron P · Análisis de Mercados</div>
+        </div>
+        <a class="nav-cta" href="mailto:polanco.aaron007@gmail.com">
+          Trabaja conmigo
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="tagline">
+          <span class="tag-dot"></span>
+          Macro · Flujo de órdenes · Derivados
+        </div>
+        <h1 class="title">
+          Cómo se Mueven los Mercados: De los Catalizadores Macro a la Liquidez Institucional
+        </h1>
+        <p class="subtitle">
+          Una explicación clara de lo que realmente impulsa el movimiento del precio en los mercados modernos, mucho más allá de patrones básicos y los indicadores minoristas.
+        </p>
+        <div class="meta">
+          <span class="meta-pill">Mercados Financieros</span>
+          <span class="meta-pill">Futuros e Índices</span>
+          <span class="meta-pill">Estructura Institucional</span>
+        </div>
+      </section>
+
+      <section class="layout">
+        <article class="article">
+          <h2>El Movimiento del Mercado No es Aleatorio</h2>
+          <p>
+            A pesar de que algunos inversores creen que los mercados se mueven de forma aleatoria,
+            los mercados financieros en realidad tienen estructura, ritmo e intención detrás de su movimiento.
+            El precio no simplemente flota: reacciona a la liquidez, al posicionamiento y a los catalizadores macro.
+            En el fondo, el precio cambia porque las órdenes tienen que cruzarse y la liquidez
+            necesita transferirse entre compradores y vendedores. Los patrones de velas pueden ayudar a
+            visualizar el comportamiento pasado del precio, pero no son lo que realmente impulsa el mercado.
+          </p>
+
+          <h2>El Flujo de Órdenes Institucional Mueve el Precio</h2>
+          <p>
+            Los verdaderos motores son el flujo de órdenes institucional, el posicionamiento en derivados
+            y las fuerzas macroeconómicas. Los grandes participantes —bancos, fondos y algoritmos de ejecución—
+            mueven la mayoría del volumen, y sus decisiones se basan en dónde pueden ejecutar tamaño
+            de forma eficiente. Cuando grandes bloques de órdenes se concentran en ciertos niveles de precio,
+            el mercado tiende a gravitar hacia ellos porque ahí es donde existe la liquidez.
+          </p>
+
+          <figure class="article-image">
+            <img src="assets/images/bee78d8e-7525-420c-813c-a55b50bc6da9.png" alt="Heatmap de flujo de órdenes" />
+            <figcaption>
+              Heatmap de flujo de órdenes que destaca niveles de liquidez agrupada donde las instituciones ejecutan órdenes de gran tamaño.
+            </figcaption>
+          </figure>
+
+          <h2>Posicionamiento en Derivados y Dinámica de Opciones</h2>
+          <p>
+            El posicionamiento en opciones agrega otra dimensión. La cobertura de los dealers, la exposición gamma
+            y los ajustes de delta pueden empujar el precio, crear rangos controlados o alimentar squeezes violentos.
+            Muchos movimientos bruscos o desplazamientos lentos y constantes se explican mejor por la dinámica
+            de opciones que por cualquier patrón técnico tradicional.
+          </p>
+
+          <figure class="article-image">
+            <img src="assets/images/a02de175-85ed-4495-b696-87c6d6cc048a.png" alt="Gráfico de exposición gamma total en el SPX" />
+            <figcaption>
+              Distribución de la exposición gamma en SPX que muestra cómo los flujos de cobertura de los dealers pueden estrechar rangos o amplificar los movimientos.
+            </figcaption>
+          </figure>
+
+          <h2>Las Condiciones Macro Marcan la Dirección General</h2>
+          <p>
+            Las condiciones macro completan el cuadro. Las tasas de interés, la inflación, los datos de empleo
+            y los eventos globales influyen en cómo se mueve el capital institucional. Los mercados tienden o
+            revierten según cómo estos factores cambian las expectativas, no porque se haya formado un patrón
+            de libro de texto.
+          </p>
+
+          <figure class="article-image">
+            <img src="assets/images/06435f6f-d7c6-40f9-84fb-e4604bfb8d5c.png" alt="Reacción del mercado a la publicación de NFP y desempleo" />
+            <figcaption>
+              Ejemplo de catalizador macro: el precio se reprecifica de forma violenta cuando los datos de NFP y desempleo golpean el libro de órdenes a las 8:30 AM.
+            </figcaption>
+          </figure>
+
+          <h2>La Conclusión</h2>
+          <p>
+            Entonces no, el precio no es aleatorio ni está tratando de cazar a los traders minoristas.
+            Se mueve porque grandes órdenes necesitan ser ejecutadas, el posicionamiento en derivados
+            obliga a comportamientos de cobertura y los catalizadores macro cambian el sentimiento institucional.
+            Todo lo demás es ruido.
+          </p>
+        </article>
+
+        <aside class="sidebar">
+          <div class="card">
+            <div class="card-title">Áreas de Enfoque</div>
+            <p>
+              Me especializo en explicar la estructura de mercado desde una perspectiva institucional,
+              combinando datos macro, flujo de órdenes y posicionamiento en derivados para traders,
+              plataformas y marcas financieras.
+            </p>
+            <div class="pill-row">
+              <span class="pill">Flujo de Órdenes</span>
+              <span class="pill">Futuros e Índices</span>
+              <span class="pill">Regímenes Macro</span>
+              <span class="pill">Opciones y Gamma</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Visual: Liquidez y Flujo</div>
+            <div class="heatmap">
+              <div class="heatmap-grid"></div>
+              <div class="heatmap-label">
+                Heatmap conceptual de pools de liquidez e interacción del precio
+              </div>
+            </div>
+            <p style="margin-top:10px;">
+              Este heatmap conceptual representa cómo el precio suele migrar hacia zonas
+              con liquidez concentrada antes de expandirse hacia nuevas áreas.
+            </p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Aaron P. · Analista Macro de Mercados y Redactor Financiero
+    </footer>
+  </div>
+
+  <script>
+    // establecer el año del footer automáticamente
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
 
