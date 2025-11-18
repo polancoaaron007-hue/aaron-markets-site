@@ -1,1 +1,355 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Why Interest Rate Expectations Move Markets More Than Actual Rate Decisions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="An article explaining why interest rate expectations move markets more than actual central bank rate decisions." />
+
+  <style>
+    :root {
+      --bg: #05060a;
+      --card-bg: #0c0f16;
+      --accent: #35c98b;
+      --accent-soft: rgba(53, 201, 139, 0.12);
+      --text-main: #f5f7fb;
+      --text-soft: #a6adbf;
+      --border-subtle: #1a1f2b;
+      --code-bg: #050712;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0f1729 0, #05060a 55%);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 1.5rem;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .pill span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      color: var(--text-soft);
+      font-size: 0.98rem;
+      max-width: 640px;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 2rem;
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .meta span::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border-subtle);
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #151826 0, #05060a 55%);
+      border-radius: 1.25rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.03);
+      padding: 1.8rem 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 2.3rem 2.2rem;
+      }
+    }
+
+    .card p {
+      margin-bottom: 1.1rem;
+      color: var(--text-soft);
+      font-size: 0.98rem;
+    }
+
+    .section-title {
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1.4rem 0 0.4rem;
+      font-size: 1.02rem;
+    }
+
+    .quote-block {
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      margin: 1.3rem 0;
+      font-style: italic;
+      color: var(--text-main);
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.2rem 0 1.4rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-subtle);
+      background: rgba(5, 6, 10, 0.85);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 600px;
+    }
+
+    thead {
+      background: rgba(10, 14, 26, 0.95);
+    }
+
+    th, td {
+      padding: 0.75rem 0.9rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(9, 12, 22, 0.7);
+    }
+
+    .tagline {
+      margin-top: 1.8rem;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="pill">
+      <span class="dot"></span>
+      <span>Macro &amp; Interest Rates</span>
+    </div>
+
+    <h1>Why Interest Rate Expectations Move Markets More Than Actual Rate Decisions</h1>
+
+    <p class="subtitle">
+      Financial markets don’t react to what just happened &mdash; they react to what they believe will happen next. Nowhere is that more obvious than in monetary policy.
+    </p>
+
+    <div class="meta">
+      <span>Macro commentary</span>
+      <span>Audience: traders, funds, research desks</span>
+      <span>Use case: futures, FX, rates, gold</span>
+    </div>
+
+    <article class="card">
+      <p>
+        Most traders wait for rate decisions. Institutions don’t. They trade the expectations weeks or months before the announcement ever hits the calendar. By the time a central bank speaks, positioning has already shifted, liquidity has already moved, and a big part of the story is already written.
+      </p>
+
+      <p class="section-title"><strong>Markets Move On Expectations &mdash; Not Events</strong></p>
+      <p>
+        By the time the Federal Reserve announces a rate decision, the outcome is often already priced in. Markets operate on forward pricing: assets adjust today based on where policy is expected to be tomorrow.
+      </p>
+      <p>
+        The key point is simple: the surprise matters more than the number. A 25 bps hike that everyone expected is often a non-event. A pause when markets were pricing a hike, or fewer cuts than expected, can move billions in seconds.
+      </p>
+
+      <p class="section-title"><strong>The Forward Curve: Where The Real Information Is</strong></p>
+      <p>
+        Interest rate expectations are visible in futures markets, especially Fed Funds futures (ZQ) and SOFR futures. These curves encode the market’s view of:
+      </p>
+      <p>
+        &bull; The expected pace of rate hikes or cuts<br>
+        &bull; Where policy rates are forecast to be 6&ndash;24 months ahead<br>
+        &bull; Whether the stance is tightening, on hold, or easing
+      </p>
+      <p>
+        When expectations shift, capital reallocates immediately. If markets are pricing in multiple cuts and the central bank signals a slower path, yields can jump, equities can soften, and the dollar can gain &mdash; even if the current rate is unchanged. The repricing happens on the curve, not the headline.
+      </p>
+
+      <p class="section-title"><strong>Forward Guidance: The Hidden Tool That Moves Markets</strong></p>
+      <p>
+        Forward guidance is often more impactful than the policy rate itself. Through speeches, press conferences, and projections, central banks steer markets toward their intended pricing. A single shift in language can be enough to reset expectations.
+      </p>
+      <p>
+        That guidance shapes volatility, positioning, and cross-asset risk appetite. Without changing rates at all, a central bank can:
+      </p>
+      <p>
+        &bull; Push equity futures higher or lower<br>
+        &bull; Move bond yields across the curve<br>
+        &bull; Strengthen or weaken a currency<br>
+        &bull; Change flows into gold, commodities, and even crypto
+      </p>
+
+      <p class="section-title"><strong>Why Asset Classes React Differently</strong></p>
+      <p>
+        The same shift in rate expectations doesn’t hit every market equally. Different assets respond to higher or lower expected rates through different channels: discount rates, funding costs, growth outlook, and risk appetite.
+      </p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Impact of Higher Expected Rates</th>
+              <th>Impact of Lower Expected Rates</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Equities</td>
+              <td>Valuation multiples compress, growth and tech get hit hardest.</td>
+              <td>Multiples expand, risk appetite improves, growth names benefit.</td>
+            </tr>
+            <tr>
+              <td>Bonds</td>
+              <td>Yields rise, prices fall, long duration underperforms.</td>
+              <td>Yields fall, prices rise, duration becomes more attractive.</td>
+            </tr>
+            <tr>
+              <td>U.S. Dollar</td>
+              <td>Strengthens as yield premium vs other currencies increases.</td>
+              <td>Weakens as the relative rate advantage narrows.</td>
+            </tr>
+            <tr>
+              <td>Gold</td>
+              <td>Faces pressure as yields and real rates become more attractive.</td>
+              <td>Benefits from lower yields, weaker dollar, and liquidity support.</td>
+            </tr>
+            <tr>
+              <td>Commodities</td>
+              <td>Can soften if higher rates hurt growth expectations.</td>
+              <td>Can rise if easier policy boosts expected demand and activity.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="section-title"><strong>Data That Shifts Rate Expectations</strong></p>
+      <p>
+        Rate expectations don’t move randomly. They adjust in response to high-impact macro data that updates the outlook for inflation, employment, and growth.
+      </p>
+      <p>
+        Key drivers include:
+      </p>
+      <p>
+        &bull; Inflation: CPI, Core CPI, PPI, Core PCE<br>
+        &bull; Labor market: Nonfarm Payrolls, unemployment rate, JOLTS<br>
+        &bull; Growth: GDP, PMI, retail sales, industrial production<br>
+        &bull; Financial stability: bank stress, credit spreads, funding markets
+      </p>
+      <p>
+        When these releases meaningfully surprise versus expectations, the futures curve reprices. That repricing is what drives sharp moves in futures, FX, and rates products immediately after the print.
+      </p>
+
+      <p class="section-title"><strong>How Markets React Around Policy Events</strong></p>
+      <p>
+        Market behavior around policy decisions typically falls into a few patterns, depending on how closely the outcome matches what was priced in beforehand.
+      </p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Typical Reaction</th>
+              <th>Market Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Decision matches expectations</td>
+              <td>Contained repricing</td>
+              <td>Volatility is limited, and the previous trend often resumes.</td>
+            </tr>
+            <tr>
+              <td>Decision slightly deviates</td>
+              <td>Sharp but orderly adjustment</td>
+              <td>One-directional moves in yields, FX, and index futures.</td>
+            </tr>
+            <tr>
+              <td>Decision shocks the curve</td>
+              <td>Aggressive repricing</td>
+              <td>Volatility spikes, liquidity can thin, and moves can overshoot.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="quote-block">
+        <p><strong>Core principle:</strong> markets don’t trade the last rate decision &mdash; they trade the evolving path of future policy.</p>
+      </div>
+
+      <p class="section-title"><strong>Conclusion: Where The Edge Actually Is</strong></p>
+      <p>
+        Rate decisions are headlines. Expectations are the market engine behind them. If you want to understand macro-driven price action, you have to follow how the curve is pricing the next 6&ndash;12 months, not just the current meeting.
+      </p>
+      <p>
+        That means watching how Fed Funds futures and key data releases reshape the expected path of policy &mdash; and how different assets respond when that path shifts. By the time the announcement hits the terminal, most of the heavy positioning is already in place.
+      </p>
+      <p>
+        The edge sits in tracking expectations early, not reacting to policy late.
+      </p>
+
+      <p class="tagline">
+        This article is for educational and research purposes only and does not constitute trading or investment advice.
+      </p>
+    </article>
+  </main>
+</body>
+</html>
